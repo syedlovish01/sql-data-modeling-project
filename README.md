@@ -34,7 +34,7 @@ The database consists of the following primary tables:
 
 ## Sample Queries
 
-The `sample_queries.sql` file contains various queries to demonstrate the database's capabilities. Here are a few examples:
+Here are a few examples:
 
 ```sql
 1. Success Rate by Space Agency
