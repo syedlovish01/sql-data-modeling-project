@@ -14,19 +14,9 @@ This project is a comprehensive showcase of relational database design and SQL s
 
 ---
 
-## 🗺️ Entity-Relationship Diagram (ERD)
-
-The following diagram illustrates the database schema, including all tables and their relationships.
-
-*(**Note:** Please create your ERD using a tool like [diagrams.net](https://www.diagrams.net/), save it as `ERD.png`, and upload it to this repository for the image to display here.)*
-
-![ERD of the Astronomical Database](./ERD.png)
-
----
-
 ## 🛠️ Technologies Used
 
-* **Language:** SQL (e.g., SQLite, PostgreSQL)
+* **Language:** MySQL 
 * **Modeling:** Entity-Relationship Diagram (ERD) design principles.
 
 ---
@@ -47,30 +37,67 @@ The database consists of the following primary tables:
 The `sample_queries.sql` file contains various queries to demonstrate the database's capabilities. Here are a few examples:
 
 ```sql
--- Q1: Find all moons orbiting the planet 'Jupiter' and order them by diameter.
-SELECT
-    MoonName,
-    Diameter_km
-FROM Moons
-WHERE PlanetID = (SELECT PlanetID FROM Planets WHERE PlanetName = 'Jupiter')
-ORDER BY Diameter_km DESC;
+1. Success Rate by Space Agency
+SELECT 
+  sa.agency_name,
+  COUNT(*) AS total_missions,
+  SUM(CASE WHEN lm.success_status = 'Success' THEN 1 ELSE 0 END) AS successful_missions,
+  ROUND(SUM(CASE WHEN lm.success_status = 'Success' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS success_rate_pct
+FROM planetary_data.luna_missions lm
+JOIN planetary_data.space_agencies sa
+  ON lm.agency_id = sa.agency_id
+GROUP BY sa.agency_name
+ORDER BY success_rate_pct DESC;
+
+-- ===========================================
+
+-- 2. Missions per Agency Over Time (Yearly Trend)
+SELECT 
+  sa.agency_name,
+  lm.launch_year,
+  COUNT(*) AS missions_launched
+FROM planetary_data.luna_missions lm
+JOIN planetary_data.space_agencies sa
+  ON lm.agency_id = sa.agency_id
+GROUP BY sa.agency_name, lm.launch_year
+ORDER BY lm.launch_year, sa.agency_name;
+
+-- ===========================================
+
+-- 3. Top 10 Asteroids by Impact Probability
+SELECT 
+  asteroid_name,
+  year_passed,
+  next_approach_year,
+  impact_probability * 100 AS impact_percent, notes
+FROM planetary_data.asteroids
+ORDER BY impact_probability DESC
+LIMIT 10;
+
+-- ===========================================
 
 
--- Q2: Count the number of missions launched by each country and show the top 5.
-SELECT
-    c.CountryName,
-    COUNT(m.MissionID) AS NumberOfMissions
-FROM Missions m
-JOIN Countries c ON m.CountryID = c.CountryID
-GROUP BY c.CountryName
-ORDER BY NumberOfMissions DESC
-LIMIT 5;
+-- 4. Moons per Planet (Ranked)
+SELECT 
+  p.planet_name,
+  COUNT(m.moon_id) AS number_of_moons
+FROM planetary_data.planets p
+LEFT JOIN planetary_data.planetary_moons m
+  ON p.planet_id = m.planet_id
+GROUP BY p.planet_name
+ORDER BY number_of_moons DESC;
 
+-- ===========================================
 
--- Q3: List all missions that were launched in the 1960s.
-SELECT
-    MissionName,
-    LaunchDate
-FROM Missions
-WHERE LaunchDate BETWEEN '1960-01-01' AND '1969-12-31'
-ORDER BY LaunchDate;
+-- 5. Moons with Atmosphere + Their Planets
+SELECT 
+  m.moon_name,
+  p.planet_name,
+  m.radius_km,
+  m.orbital_period_days,
+  m.has_atmosphere
+FROM planetary_data.planetary_moons m
+JOIN planetary_data.planets p
+  ON m.planet_id = p.planet_id
+WHERE m.has_atmosphere = 'Yes';
+
