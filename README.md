@@ -32,7 +32,7 @@ The database consists of the following primary tables:
 
 ---
 
-## 쿼리 Sample Queries
+## Sample Queries
 
 The `sample_queries.sql` file contains various queries to demonstrate the database's capabilities. Here are a few examples:
 
