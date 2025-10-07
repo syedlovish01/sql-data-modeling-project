@@ -1,0 +1,11 @@
+asteroid_name,year_passed,next_approach_year,impact_percent,notes
+"2008 TC3",2008,NULL,100,"Entered Earth’s atmosphere and exploded over Sudan."
+"2018 VP1",2018,2020,40.99999964237213,"Tiny asteroid, passed safely."
+"2010 RF12",2010,2095,5.000000074505806,"Small but relatively higher impact chance."
+Bennu,2019,2135,3.700000047683716,"Slight risk in late 2100s."
+"1950 DA",2001,2880,1.2000000104308128,"One of the highest long-term risks."
+"2009 JF1",2015,2029,0.20000000949949026,"Initially flagged as potential impactor."
+"2005 ED224",2023,2029,0.12000000569969416,"Recently passed, future approach in 2029."
+"2000 SG344",2000,2071,0.10000000474974513,"Potential Earth impact trajectory."
+"2023 DW",2023,2046,0.06000000284984708,"Being monitored closely."
+Apophis,2021,2029,0.04299999854993075,"Close approach in 2029, no impact expected."
