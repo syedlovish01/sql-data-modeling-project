@@ -1,0 +1,5 @@
+moon_name,planet_name,radius_km,orbital_period_days,has_atmosphere
+Europa,Jupiter,1560.80,3.55,Yes
+Ganymede,Jupiter,2634.10,7.15,Yes
+Titan,Saturn,2575.00,15.95,Yes
+Triton,Neptune,1353.40,5.88,Yes
