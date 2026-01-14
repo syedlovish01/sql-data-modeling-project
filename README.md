@@ -1,9 +1,10 @@
 # SQL Data Modeling & Analysis: Space Exploration Missions
 
 A comprehensive relational database built with SQL to model astronomical data and spcae exploration missions, demonstrating core database design and querying skills.
-# Relational Data Modeling for a Scientific Dataset
+
 
 ## 📖 Project Overview
+### Relational Data Modeling for a Scientific Dataset
 
 This project is a comprehensive showcase of relational database design and SQL skills. The objective was to model a complex, real-world dataset from scratch: the celestial bodies of our solar system and the history of international space exploration missions. The entire structure was built using SQL, from schema creation to data insertion and querying.
 
